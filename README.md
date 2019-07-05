@@ -30,6 +30,10 @@ membersテーブル
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 
+Association
+- belongs_to :group
+- belongs_to :user
+
 
 usersテーブル
 |Column|Type|Options|
@@ -39,12 +43,21 @@ usersテーブル
 | adress|integer|null: false, foreign_key: true|
 | password|integer|null: false, foreign_key: true|
 
+Association
+- has_many :members
+- has_many :group, through: :members
+- has_many :message
+
 groupテーブル
 |Column|Type|Options|
 |------|----|-------|
 | user_id| integer| null: false, foreign_key: true|
 | name|string|null: false, foreign_key: true|
 
+Association
+- has_many :members
+- has_many :users, through: :members
+- has_many :users
 
 messageテーブル
 |Column|Type|Options|
@@ -52,15 +65,8 @@ messageテーブル
 | user_id| integer| null: false, foreign_key: true|
 | name|string|null: false, foreign_key: true|
 | body|text|notnull: false, foreign_key: true|
-
-
-Post photoテーブル
-|Column|Type|Options|
-|------|----|-------|
-| user_id| integer| null: false, foreign_key: true|
-| name|string|null: false, foreign_key: true|
 | image|string|notnull: false, foreign_key: true|
 
 Association
-- belongs_to :group
 - belongs_to :user
+- belongs_to :group
