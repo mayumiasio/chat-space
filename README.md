@@ -38,25 +38,23 @@ Association
 usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-| name|string|index: true, null: false, foreign_key: true|
-| adress|integer|null: false, foreign_key: true|
-| password|integer|null: false, foreign_key: true|
+| name|string|index: true, null: false|
 
 Association
 - has_many :members
 - has_many :groups, through: :members
+
 - has_many :messages
 
 groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-| user_id| integer| null: false, foreign_key: true|
 | name|string|null: false|
 
 Association
 - has_many :members
 - has_many :users, through: :members
-- has_many :users
+- has_many :messages
 
 messagesテーブル
 |Column|Type|Options|
