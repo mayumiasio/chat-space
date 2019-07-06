@@ -38,34 +38,33 @@ Association
 usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-| user_id| integer| null: false, foreign_key: true|
-| name|string|null: false, foreign_key: true|
+| name|string|index: true, null: false, foreign_key: true|
 | adress|integer|null: false, foreign_key: true|
 | password|integer|null: false, foreign_key: true|
 
 Association
 - has_many :members
-- has_many :group, through: :members
-- has_many :message
+- has_many :groups, through: :members
+- has_many :messages
 
-groupテーブル
+groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
 | user_id| integer| null: false, foreign_key: true|
-| name|string|null: false, foreign_key: true|
+| name|string|null: false|
 
 Association
 - has_many :members
 - has_many :users, through: :members
 - has_many :users
 
-messageテーブル
+messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 | user_id| integer| null: false, foreign_key: true|
-| name|string|null: false, foreign_key: true|
-| body|text|notnull: false, foreign_key: true|
-| image|string|notnull: false, foreign_key: true|
+| body|text|
+| image|string|
+| group_id| integer|notnull: false, foreign_key: true|
 
 Association
 - belongs_to :user
