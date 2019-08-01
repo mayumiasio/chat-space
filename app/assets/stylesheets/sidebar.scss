@@ -3,6 +3,12 @@
   width: 300px;
   height: 100%;
   float:left;
+  color: #FFF;
+
+  a, a:hover, a:visited{
+    text-decoration: none;
+    color: #fff;
+  }
   
 
   &__header {
@@ -24,18 +30,18 @@
       background:  #253141;
       padding:0 20px;
 
-    p{
-      color: #FFF;
-    }
-    a,a:hover, a:visited{
-      color:#fff;
-      text-decoration: none;
-    }
+      p{
+        color: #FFF;
+      }
+      a,a:hover, a:visited{
+        color:#fff;
+        text-decoration: none;
+      }
     
       
-      ul{
-        margin-left: auto;
-      }
+    ul{
+      margin-left: auto;
+    }
       li{
         display: inline;
       }
@@ -46,18 +52,19 @@
           text-align: center;
           display: inline;
           color: #FFF;
-        }
+      }
       }
     }
   }
-  &__groups {
+  
+  .groups {
     background: #2f3e51;
     width: 300px;
     height: $chat-side-groups-height;
     float:left;
     color: #FFF;
     padding: 20px;
-
+  
     &_box{
       color: #FFF;
       background:  #2f3e51;
@@ -70,5 +77,4 @@
       }
     }
   }
-
 }
