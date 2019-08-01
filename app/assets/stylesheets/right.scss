@@ -96,8 +96,8 @@
       justify-content: center;
       align-items: center;
       margin-right:15px;
-      float: left;
-      width: calc(100% - 100px);
+      // float: left;
+      // width: calc(100% - 100px);
     }
       input{
         width:100%;
@@ -111,8 +111,8 @@
 
     .submit-button{
       display:inline;
-      position: absolute;
-      margin: auto;
+      // position: absolute;
+      margin: 0 0 0 25px;
       color: #ffffff;
       background: #38AEF0;
       padding: 15px;

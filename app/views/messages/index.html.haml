@@ -1,32 +1,6 @@
 .wrapper
-  .notification
-    %p
-      グループを作成しました
-  .chat-side
-    .chat-side__header
-      .chat-side__header_box
-        %p.chat-side__header_box_user-name
-          mayumi
-        %ul.side-header_box_menu
-          %li.side-header_box_menu_new-group
-            =link_to "#" do
-              = fa_icon 'edit' 
-          %li.side-header_box_menu_new-group
-            =link_to "#" do
-              = fa_icon 'cog' 
-          %li.side-header_box_menu_new-group
-    .chat-side__groups
-      .chat-side__groups_box
-        %p.group-name
-          group name
-        %p.message
-          latest message
-
-      .chat-side__groups_box
-        %p.group-name
-          group name
-        %p.message
-          latest message
+  -# =render partial: "./shared/sidebar"
+  = render 'messages/sidebar'
 
   .chat-main
     .chat-main__header
@@ -43,7 +17,7 @@
                 mayumi
         .edit-button
 
-          = link_to '#'
+          = link_to '#' do
             Edit
         
     .chat-main__messages
@@ -59,12 +33,8 @@
     .chat-main__footer
       .form-box
         %input.input-box{ placeholder: 'Type a message' }
-
           %label.upload-label{for: "upload-icon"}
             %i.fa.fa-picture-o
             = file_field_tag :image, id: "upload-icon", class: "hidden"
-
-  
-      
-      .submit-button
-        Send
+          .submit-button
+            Send
