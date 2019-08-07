@@ -3,5 +3,5 @@ $chat-side-header-height: 100px;
 $chat-side-groups-height: calc(100% - #{$chat-side-header-height} );
 
 $header-height: 100px;
-$footer-height: 90px;
-$messages-height: calc(100% - #{$header-height} - #{$footer-height} );
+$form-height: 90px;
+$messages-height: calc(100% - #{$header-height} - #{$form-height} );
