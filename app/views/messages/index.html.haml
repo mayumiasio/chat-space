@@ -1,6 +1,5 @@
 .wrapper
-  -# =render partial: "./shared/sidebar"
-  = render 'messages/sidebar'
+  = render 'messages/sidebar' 
 
   .chat-main
     .chat-main__header
@@ -9,32 +8,24 @@
           .current_group__name
             current group
           .members
-            %h3.members__title Member:
+            %h3.members__title Member : 
             %ul.members__list
-              %li
-                test
-              %li
-                mayumi
+            %li
+              test
+            %li
+              mayumi
         .edit-button
 
           = link_to '#' do
             Edit
-        
-    .chat-main__messages
-      .chat-main__messages__upper-info
-        .chat-main__messages__upper-info__name
-          aaa
 
-        .chat-main__messages__upper-info__day
-          2019/07/12(Fri) 19:24:12
-        .chat-main__messages__upper-info__text
-          test
-        
-    .chat-main__footer
-      .form-box
-        %input.input-box{ placeholder: 'Type a message' }
-          %label.upload-label{for: "upload-icon"}
-            %i.fa.fa-picture-o
-            = file_field_tag :image, id: "upload-icon", class: "hidden"
-          .submit-button
-            Send
+    .messages
+      = render @messages
+    .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'form__submit'
