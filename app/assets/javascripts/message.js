@@ -1,12 +1,6 @@
 $(function(){
   function buildHTML(message){
-    if (message.image.url == null)
-    {
-      var img = "";
-    }else
-    {
-      var img =  `<img src=${message.image.url}></img> `
-    }
+    var img = message.image.url == null ? "": `<img src=${message.image.url}></img> `
 
     var html = `<div class="message">
                   <div class="upper-message">
@@ -21,20 +15,15 @@ $(function(){
                   ${message.content}
                   </P>
                   ${img}
-                </div>
-                `
-                
-                
+                </div>`
 
     return html ;     
                 }
 
   $('#new_message').on('submit', function(e){
-  //$('#new_message')[0].reset();
     e.preventDefault();
     var formData = new FormData(this)
     var url = $(this).attr('action')
-    console.log (url)
     
     $.ajax({
       url: url,
@@ -46,15 +35,15 @@ $(function(){
     })
     
     .done(function(data){
-      console.log (data);
+
       var html = buildHTML(data);
       $('.messages').append(html)
-      $('.form__message').val('')
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('#new_message')[0].reset();
     })
     .fail(function(){
       alert('error');
     })
   })
- })
+})
