@@ -6,14 +6,14 @@
       .chat-main__header-title
         .current_group
           .current_group__name
-            current group
+            = @group.name
           .members
             %h3.members__title Member : 
             %ul.members__list
-            %li
-              test
-            %li
-              mayumi
+            - @group.users.each do |group_name|
+              %li
+              = group_name.name
+
         .edit-button
 
           = link_to '#' do
@@ -21,6 +21,7 @@
 
     .messages
       = render @messages
+      -# = render 'messages/message'
     .form
       = form_for [@group, @message] do |f|
         = f.text_field :content, class: 'form__message', placeholder: 'type a message'
