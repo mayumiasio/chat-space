@@ -22,7 +22,7 @@ $(document).on('turbolinks:load',function(){
                 </div>`
     $('#chat-group-users').append(html);
   }
-  // var search_users = [];
+  
   $("#user-search-field").on('keyup', function(){
     var input = $(this).val();
     if (input.length === 0){
