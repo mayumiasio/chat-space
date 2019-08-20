@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbolinks:load',function(){
   function buildHTML(message){
     var img = message.image.url == null ? "": `<img src=${message.image.url}></img> `
 
@@ -46,4 +46,4 @@ $(function(){
       alert('error');
     })
   })
-})
+});

@@ -16,8 +16,9 @@
 
         .edit-button
 
-          = link_to '#' do
-            Edit
+          = link_to edit_group_path(@group) do
+            .group__name 
+              Edit
 
     .messages
       = render @messages

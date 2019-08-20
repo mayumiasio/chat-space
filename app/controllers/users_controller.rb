@@ -1,5 +1,26 @@
 class UsersController < ApplicationController
 
+  def index
+    @users = User.where('name LIKE(?)', "#{params[:keyword]}%").where.not(id: current_user).limit(20)
+
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def create
+    @user = user.new(user_params)
+    if @user.save
+      respond_to do |format|
+        format.html { redirect_to :root }
+        format.json { render json: @user}
+      end
+    else
+      render :index
+    end
+  end
+
   def edit
   end
 

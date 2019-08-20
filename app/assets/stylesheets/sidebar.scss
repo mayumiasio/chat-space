@@ -57,24 +57,37 @@
     }
   }
   
-  .groups {
+  .groups{
     background: #2f3e51;
-    width: 300px;
-    height: $chat-side-groups-height;
-    float:left;
-    color: #FFF;
-    padding: 20px;
-  
-    &_box{
+      width: 300px;
+      height: $chat-side-groups-height;
+      float:left;
       color: #FFF;
-      background:  #2f3e51;
-      margin:0 0 40px 0 ;
-      p.group-name{
+      padding: 20px;
+      overflow: scroll;
+
+    .group {
+      background: #2f3e51;
+      width: 300px;
+      // height: $chat-side-groups-height;
+      float:left;
+      color: #FFF;
+      // padding: 20px;
+      margin-bottom:40px;
+      
+    .group__name{
         font-size: 15px;
       }
-      p.message{
+    .group__message{
         font-size: 11px;
+      }
+    
+      &_box{
+        color: #FFF;
+        background:  #2f3e51;
+        margin:0 0 40px 0 ;
+        
       }
     }
   }
-}
+};
