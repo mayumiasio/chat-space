@@ -2,7 +2,7 @@
   = render 'messages/sidebar' 
 
   .chat-main
-    .chat-main__header
+    .chat-main__header(data-group_id= "#{@group.id}" )
       .chat-main__header-title
         .current_group
           .current_group__name
