@@ -7,7 +7,6 @@ $(document).on('turbolinks:load',function(){
       clearInterval(autoReload);
       return 
     }
-    console.log(group_id)
     var url = location.href;
     var result = url.match(/^https?:\/{2,}.*?(\/.*)/)[1];
     $.ajax({
@@ -31,7 +30,7 @@ $(document).on('turbolinks:load',function(){
       });
     })
     .fail(function() {
-      // alert('error');
+      alert('error');
     });
   };
 
