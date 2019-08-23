@@ -3,6 +3,11 @@ $(document).on('turbolinks:load',function(){
     //カスタムデータ属性を利用し、ブラウザに表示されている最新メッセージのidを取得
     last_message_id = $('.message:last-child').data('message-id');
     var group_id = $('.chat-main__header').data('group_id');
+    if (!group_id){
+      clearInterval(autoReload);
+      return 
+    }
+    console.log(group_id)
     var url = location.href;
     var result = url.match(/^https?:\/{2,}.*?(\/.*)/)[1];
     $.ajax({
@@ -26,13 +31,12 @@ $(document).on('turbolinks:load',function(){
       });
     })
     .fail(function() {
-      alert('error');
+      // alert('error');
     });
   };
 
   function buildHTML(message){
     var img = message.image.url == null ? "": `<img src=${message.image.url}></img> `
-
     var html = `<div class="message" data-message-id="${message.id}">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
@@ -50,61 +54,8 @@ $(document).on('turbolinks:load',function(){
 
     return html ;     
   }
-  var buildMessageHTML = function(message) {
-    if (message.content && message.image.url) {
-      //data-idが反映されるようにしている
-      var html = '<div class="message" data-id=' + message.id + '>' +
-        '<div class="upper-message">' +
-          '<div class="upper-message__user-name">' +
-            message.user_name +
-          '</div>' +
-          '<div class="upper-message__date">' +
-            message.created_at +
-          '</div>' +
-        '</div>' +
-        '<div class="lower-message">' +
-          '<p class="lower-message__content">' +
-            message.content +
-          '</p>' +
-          '<img src="' + message.image.url + '" class="lower-message__image" >' +
-        '</div>' +
-      '</div>'
-    } else if (message.content) {
-      //同様に、data-idが反映されるようにしている
-      var html = '<div class="message" data-id=' + message.id + '>' +
-        '<div class="upper-message">' +
-          '<div class="upper-message__user-name">' +
-            message.user_name +
-          '</div>' +
-          '<div class="upper-message__date">' +
-            message.created_at +
-          '</div>' +
-        '</div>' +
-        '<div class="lower-message">' +
-          '<p class="lower-message__content">' +
-            message.content +
-          '</p>' +
-        '</div>' +
-      '</div>'
-    } else if (message.image.url) {
-      //同様に、data-idが反映されるようにしている
-      var html = '<div class="message" data-id=' + message.id + '>' +
-        '<div class="upper-message">' +
-          '<div class="upper-message__user-name">' +
-            message.user_name +
-          '</div>' +
-          '<div class="upper-message__date">' +
-            message.created_at +
-          '</div>' +
-        '</div>' +
-        '<div class="lower-message">' +
-          '<img src="' + message.image.url + '" class="lower-message__image" >' +
-        '</div>' +
-      '</div>'
-    };
-    return html;
-    
-  };
+
+
   $('#new_message').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this)
@@ -135,7 +86,8 @@ $(document).on('turbolinks:load',function(){
 
     //途中省略
     //$(function(){});の閉じタグの直上(処理の最後)に以下のように追記
-    setInterval(reloadMessages, 5000);
-    
+      if ($('.chat-main__header').data('group_id')){
+        var autoReload = setInterval(reloadMessages, 5000)
+      }
 });
 
